@@ -1,6 +1,7 @@
 import { check, group } from "k6";
 import { Rate, Trend } from "k6/metrics";
 import http, { request } from "k6/http";
+import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 
 const requestSuccess = new Rate("successRate");
 const URL = "https://restful-booker.herokuapp.com";
@@ -60,6 +61,11 @@ export default function () {
     check(createBookingResponse, {
       "Create Booking: status was 200": (r) => r.status === 200,
     });
-
   });
 }
+
+export function handleSummary(data) {
+    return {
+      'k6-tests-report.html': htmlReport(data),
+    };
+  }

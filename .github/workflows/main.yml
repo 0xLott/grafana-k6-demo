@@ -1,0 +1,41 @@
+name: Run k6 tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install node.js
+        run:
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash \
+          nvm install 22 \
+          node -v \
+          npm -v
+
+      - name: Install k6
+        run: sudo gpg -k \
+          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 \
+          echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \ sudo tee /etc/apt/sources.list.d/k6.list \
+          sudo apt-get update \
+          sudo apt-get install k6
+
+      - name: Run k6
+        run: k6 run tests.js
+
+      - name: Upload k6 Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-tests-report
+          path: k6-tests-report.html
