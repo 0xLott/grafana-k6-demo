@@ -17,20 +17,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-    #   - name: Install node.js
-    #     run:
-    #       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash \
-    #       nvm install 22 \
-    #       node -v \
-    #       npm -v
-
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
 
       - name: Run k6 tests
         uses: grafana/run-k6-action@v1
         with:
-            path: tests.js
+            path: PerformanceTests.js
 
       - name: Upload k6 Report
         uses: actions/upload-artifact@v4
