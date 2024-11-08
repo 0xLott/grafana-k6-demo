@@ -38,10 +38,17 @@ export default function () {
   });
 
   group("Should get bookings", () => {
+    const getBookingsParams = {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+    };
+
     http.get(`${URL}/booking`);
     sleep(1);
 
-    http.get(`${URL}/booking/1`);
+    http.get(`${URL}/booking/392`, getBookingsParams);
     sleep(1);
   });
 }
@@ -49,5 +56,6 @@ export default function () {
 export function handleSummary(data) {
   return {
     "k6-load-tests-report.html": htmlReport(data),
+    stdout: textSummary(data, { indent: " ", enableColors: true }),
   };
 }
