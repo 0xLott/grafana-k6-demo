@@ -1,12 +1,12 @@
 import { check, group } from "k6";
 import { Rate, Trend } from "k6/metrics";
 import http, { request } from "k6/http";
-import { htmlReport } from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 const requestSuccess = new Rate("successRate");
 const URL = "https://restful-booker.herokuapp.com";
 
-var authResponse = '';
+var authResponse = "";
 
 export default function () {
   group("Should authenticate user", () => {
@@ -46,7 +46,7 @@ export default function () {
     const createBookingParams = {
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        Accept: "application/json",
       },
     };
 
@@ -65,7 +65,7 @@ export default function () {
 }
 
 export function handleSummary(data) {
-    return {
-      'k6-tests-report.html': htmlReport(data),
-    };
-  }
+  return {
+    "k6-performnce-tests-report.html": htmlReport(data),
+  };
+}
