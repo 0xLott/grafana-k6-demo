@@ -1,0 +1,12 @@
+{
+  "name": "grafana-k6-demo",
+  "version": "1.0.0",
+  "description": "This project has been created using **webpack-cli**, you can now run",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
