@@ -66,7 +66,7 @@ export default function () {
 
 export function handleSummary(data) {
   return {
-    "k6-performnce-tests-report.html": htmlReport(data),
-    stdout: textSummary(data, { indent: " ", enableColors: true }),
+    "k6-performance-tests-report.html": htmlReport(data),
+    // stdout: textSummary(data, { indent: " ", enableColors: true }),
   };
 }

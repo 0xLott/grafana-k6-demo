@@ -23,7 +23,7 @@ jobs:
       - name: Run k6 tests
         uses: grafana/run-k6-action@v1
         with:
-            path: LoadTests.js
+            path: src/LoadTests.js
 
       - name: Upload k6 Report
         uses: actions/upload-artifact@v4

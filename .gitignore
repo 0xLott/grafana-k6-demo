@@ -8,3 +8,6 @@
 .history/
 
 *.vsix
+
+k6-performance-tests-report.html
+k6-loads-tests-report.html
